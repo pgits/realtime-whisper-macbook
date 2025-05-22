@@ -5,6 +5,15 @@ from transformers import pipeline
 import time
 import threading
 import queue
+import warnings
+# Filter the specific FutureWarning from Hugging Face Transformers
+warnings.filterwarnings(
+    "ignore",
+    message="The input name `inputs` is deprecated\. Please make sure to use `input_features` instead\.",
+    category=FutureWarning,
+    module="transformers" # This targets the warning specifically from the transformers module
+)
+
 
 # --- Configuration ---
 MODEL_NAME = "openai/whisper-tiny.en" # "tiny.en" for English-only, "base.en", "small.en", etc.
